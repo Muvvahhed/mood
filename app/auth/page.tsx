@@ -25,9 +25,9 @@ const createNewUser = async () => {
   redirect('/journal')
 }
 
-const NewUserPage = async () => {
+const AuthPage = async () => {
   await createNewUser()
   return <div></div>
 }
 
-export default NewUserPage
+export default AuthPage

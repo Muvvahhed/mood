@@ -19,9 +19,9 @@ const HistoryPage = async () => {
   const { analyses, avgSentimentScore } = await getData()
 
   return (
-    <div className="w-full h-full relative pt-2">
-      <div className="absolute right-5">{`Avg. Sentiment ${avgSentimentScore}`}</div>
-      <div className="w-full h-full">
+    <div className="w-full h-full relative pt-2 overflow-hidden">
+      <div className="absolute right-5">{`Avg. Sentiment Score: ${avgSentimentScore}`}</div>
+      <div className="w-full h-full p-4">
         <HistoryChart data={analyses} />
       </div>
     </div>

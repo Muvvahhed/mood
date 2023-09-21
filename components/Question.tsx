@@ -30,7 +30,7 @@ function Question() {
           placeholder="ask a question"
           value={value}
           onChange={handleFormChange}
-          className="border border-black/20 px-4 py-2 text-lg rounded-lg outline-none focus:border focus:border-primary-green dark:bg-[#27272a]"
+          className="border border-black/20 px-4 py-2 text-lg rounded-lg outline-none focus:border focus:border-primary-green dark:bg-[#27272a] w-[70%]"
         />
         <button
           disabled={isLoading}

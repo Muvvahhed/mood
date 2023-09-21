@@ -3,7 +3,7 @@ import { auth } from '@clerk/nextjs'
 
 export default async function Home() {
   const { userId } = await auth()
-  let href = userId ? '/journal' : '/new-user'
+  let href = userId ? '/journal' : '/auth'
 
   return (
     <main className="h-screen w-screen bg-black text-white">

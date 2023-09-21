@@ -4,6 +4,8 @@ import { updateEntry } from '@/utils/api'
 import { Analysis, JournalEntry } from '@prisma/client'
 import { useState } from 'react'
 import { useAutosave } from 'react-autosave'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+
 import Spinner from './ui/spinner'
 
 const Editor = ({
@@ -13,7 +15,7 @@ const Editor = ({
 }) => {
   const [value, setValue] = useState(entry.content)
   const [analysis, setAnalysis] = useState(entry.analysis)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const analysisData = [
     { name: 'Summary', value: analysis?.summary },
     { name: 'Subject', value: analysis?.subject },
@@ -30,13 +32,13 @@ const Editor = ({
     },
   })
   return (
-    <div className="p-10 h-full bg-white/60 dark:bg-[#09090b] w-full md:grid md:grid-cols-3 md:gap-x-10 flex flex-col relative">
+    <div className="p-4 pt-10 md:p-10 h-full bg-white/60 dark:bg-[#09090b] w-full md:grid md:grid-cols-3 md:gap-x-10 flex flex-col relative gap-5 ">
       {isLoading && (
         <p className="absolute left-[3%] top-[1%]">
-          <Spinner text="Updating..." />
+          <Spinner text="updating..." />
         </p>
       )}
-      <div className="col-span-2">
+      <div className="md:col-span-2 h-[55%] md:h-full">
         <div className="w-full h-full">
           <textarea
             className="w-full h-full p-8 text-xl outline-none rounded-md shadow border dark:bg-[#27272a] dark:border-[#27272a]"
@@ -46,7 +48,7 @@ const Editor = ({
           />
         </div>
       </div>
-      <div className="h-[50%] md:h-full w-full bg-white dark:bg-white/20 rounded-md shadow overflow-y-scroll">
+      <div className="h-[45%] md:h-full w-full bg-white dark:bg-white/20 rounded-md shadow overflow-y-scroll">
         <div
           className="bg-blue-400 px-6 py-6 text-white dark:bg-opacity-75"
           style={{
@@ -64,7 +66,7 @@ const Editor = ({
                   key={item.name}
                 >
                   <span className="text-lg font-medium">{item.name}</span>
-                  <span className="flex-wrap text-black/60 w-[70%] dark:text-white/70">
+                  <span className="flex-wrap text-black/60 w-[60%] md:w-[70%] dark:text-white/70">
                     {item.value}
                   </span>
                 </li>

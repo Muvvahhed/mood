@@ -11,14 +11,14 @@ const EntryCard = ({
       <div className="px-4 py-5 sm:px-6">{date}</div>
       <div className="px-4 py-5 sm:p-6 flex gap-x-4">
         <span className="capitalize ">subject:</span>
-        <span className="w-[70%] flex-wrap text-black/60  dark:text-white/70">
+        <span className="w-[75%] flex-wrap text-black/60  dark:text-white/70">
           {entry.analysis?.subject}
         </span>
       </div>
       <div className="px-4 py-5 sm:p-6 flex gap-x-4">
         <span className="capitalize ">percentage:</span>
         {entry.analysis?.moodScore && (
-          <span className="w-[70%] flex-wrap text-black/60  dark:text-white/70">{`${entry.analysis?.moodScore}%`}</span>
+          <span className="w-[75%] flex-wrap text-black/60  dark:text-white/70">{`${entry.analysis?.moodScore}%`}</span>
         )}
       </div>
     </div>

@@ -26,8 +26,8 @@ const NewEntryCard = () => {
         </div>
       ) : (
         <div className="px-4 py-5 sm:p-6 flex items-center gap-x-2 justify-center">
-          <PlusCircleIcon className="w-10 h-10 stroke-primary-green" />
-          <span className="text-3xl">New Entry</span>
+          <PlusCircleIcon className="h-8 w-8 md:w-10 md:h-10 stroke-primary-green" />
+          <span className="text-xl md:text-3xl">New Entry</span>
         </div>
       )}
     </button>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ModeToggle } from '@/components/ModeToggle'
 import Image from 'next/image'
 import Spinner from '@/components/ui/spinner'
+import SideMenu from '@/components/SideMenu'
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const links = [
@@ -24,11 +25,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             about="logo"
           />
         </Link>
-        <div className="ml-auto">
+        <div className="ml-auto flex gap-x-4">
           <ModeToggle />
-        </div>
-        <div>
           <UserButton afterSignOutUrl="/" />
+          <div className="md:hidden">
+            <SideMenu />
+          </div>
         </div>
       </nav>
       <div className="h-[90%] flex">

@@ -21,9 +21,9 @@ export const PATCH = async (
       content,
     },
   })
-  const analysis = await analyze(updatedEntry.content)
   let updatedAnalysis = null
-  if (analysis) {
+  const analysis = await analyze(updatedEntry.content)
+  if (analysis && updatedEntry.content) {
     updatedAnalysis = await prisma.analysis.upsert({
       where: {
         entryId: updatedEntry.id,

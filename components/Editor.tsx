@@ -15,7 +15,7 @@ const Editor = ({
 }) => {
   const [value, setValue] = useState(entry.content)
   const [analysis, setAnalysis] = useState(entry.analysis)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const analysisData = [
     { name: 'Summary', value: analysis?.summary },
     { name: 'Subject', value: analysis?.subject },

@@ -1,11 +1,7 @@
 import { OpenAI } from 'langchain/llms/openai'
 import { StructuredOutputParser } from 'langchain/output_parsers'
 import { PromptTemplate } from 'langchain/prompts'
-import {
-  loadQARefineChain,
-  loadQAMapReduceChain,
-  loadQAStuffChain,
-} from 'langchain/chains'
+import { loadQAStuffChain } from 'langchain/chains'
 import { Document } from 'langchain/document'
 import { OpenAIEmbeddings } from 'langchain/embeddings/openai'
 import { MemoryVectorStore } from 'langchain/vectorstores/memory'
@@ -91,24 +87,13 @@ export const qa = async (
     template: questionPromptTemplateString,
   })
 
-  const refinePromptTemplateString = `The original question is as follows: {question}
-  We have provided an existing answer: {existing_answer}
-  We have the opportunity to update the existing answer
-  (only if needed and only if it satisfies the question!) with some more context below.
-  ------------
-  {context}
-  ------------
-  Given the new context, update the original answer to better answer the question.
-  You must provide a response, either original answer or updated answer.`
-
-  const refinePrompt = new PromptTemplate({
-    inputVariables: ['question', 'existing_answer', 'context'],
-    template: refinePromptTemplateString,
-  })
-
   const docs = entries.map((entry) => {
+    let content = entry.content
+    if (!content) {
+      content = 'no journal entry found'
+    }
     return new Document({
-      pageContent: entry.content,
+      pageContent: content,
       metadata: { source: entry.id, date: entry.createdAt },
     })
   })
@@ -125,12 +110,10 @@ export const qa = async (
   const embedings = new OpenAIEmbeddings()
   const store = await MemoryVectorStore.fromDocuments(docs, embedings)
   const relevantDocs = await store.similaritySearch(question)
-  // console.log({ relevantDocs })
   const res = await chain.call({
     input_documents: [relevantDocs[0]],
     question,
   })
-  // console.log({ res })
   if (res.text) {
     return res.text
   } else {
@@ -139,3 +122,18 @@ export const qa = async (
 }
 
 type AiOutput = TypeOf<typeof schema>
+
+// const refinePromptTemplateString = `The original question is as follows: {question}
+// We have provided an existing answer: {existing_answer}
+// We have the opportunity to update the existing answer
+// (only if needed and only if it satisfies the question!) with some more context below.
+// ------------
+// {context}
+// ------------
+// Given the new context, update the original answer to better answer the question.
+// You must provide a response, either original answer or updated answer.`
+
+// const refinePrompt = new PromptTemplate({
+//   inputVariables: ['question', 'existing_answer', 'context'],
+//   template: refinePromptTemplateString,
+// })

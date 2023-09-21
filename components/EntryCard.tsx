@@ -17,7 +17,9 @@ const EntryCard = ({
       </div>
       <div className="px-4 py-5 sm:p-6 flex gap-x-4">
         <span className="capitalize ">percentage:</span>
-        <span className="w-[70%] flex-wrap text-black/60  dark:text-white/70">{`${entry.analysis?.moodScore}%`}</span>
+        {entry.analysis?.moodScore && (
+          <span className="w-[70%] flex-wrap text-black/60  dark:text-white/70">{`${entry.analysis?.moodScore}%`}</span>
+        )}
       </div>
     </div>
   )

@@ -20,15 +20,15 @@ const Editor = ({
     { name: 'Mood', value: analysis?.mood },
     { name: 'Percentage', value: analysis?.moodScore },
   ]
-  // useAutosave({
-  //   data: value,
-  //   onSave: async (_value) => {
-  //     setIsLoading(true)
-  //     const updated = await updateEntry(entry.id, _value)
-  //     setAnalysis(updated.analysis)
-  //     setIsLoading(false)
-  //   },
-  // })
+  useAutosave({
+    data: value,
+    onSave: async (_value) => {
+      setIsLoading(true)
+      const updated = await updateEntry(entry.id, _value)
+      setAnalysis(updated.analysis)
+      setIsLoading(false)
+    },
+  })
   return (
     <div className="p-10 h-full bg-white/60 dark:bg-[#09090b] w-full md:grid md:grid-cols-3 md:gap-x-10 flex flex-col relative">
       {isLoading && (

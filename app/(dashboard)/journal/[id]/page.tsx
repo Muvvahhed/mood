@@ -1,12 +1,13 @@
 import Editor from '@/components/Editor'
 import { getUserByClerkId } from '@/utils/auth'
 import { prisma } from '@/utils/db'
+import { use } from 'react'
 
 const getEntry = async (id: string) => {
   const user = await getUserByClerkId()
-  // if (!user) {
-  //   return
-  // }
+  if (!user) {
+    throw new Error('User not found')
+  }
   const entry = await prisma.journalEntry.findUniqueOrThrow({
     where: {
       userId_id: {

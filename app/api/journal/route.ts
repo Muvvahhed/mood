@@ -6,6 +6,9 @@ import { NextResponse } from 'next/server'
 
 export const POST = async (request: Request) => {
   const user = await getUserByClerkId()
+  if (!user) {
+    return NextResponse.json({ error: 'User Not Found' }, { status: 404 })
+  }
   const entry = await prisma.journalEntry.create({
     data: {
       userId: user.id,

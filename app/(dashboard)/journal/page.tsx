@@ -9,6 +9,7 @@ import { HamburgerMenuIcon } from '@radix-ui/react-icons'
 
 const getEntries = async () => {
   const user = await getUserByClerkId()
+  if (!user) return []
   const entries = await prisma.journalEntry.findMany({
     where: {
       userId: user.id,

@@ -9,6 +9,9 @@ export const PATCH = async (
   { params }: { params: { id: string } }
 ) => {
   const user = await getUserByClerkId()
+  if (!user) {
+    return NextResponse.json({ error: 'User Not Found' }, { status: 404 })
+  }
   const { content } = await request.json()
   const updatedEntry = await prisma.journalEntry.update({
     where: {

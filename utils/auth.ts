@@ -4,7 +4,7 @@ import { User } from '@prisma/client'
 
 export const getUserByClerkId = async () => {
   const user = await currentUser()
-  return prisma.user.findUniqueOrThrow({
+  return prisma.user.findUnique({
     where: {
       clerkId: user?.id,
     },

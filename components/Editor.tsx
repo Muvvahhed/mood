@@ -5,6 +5,7 @@ import { Analysis, JournalEntry } from '@prisma/client'
 import { useState } from 'react'
 import { useAutosave } from 'react-autosave'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import fontColorContrast from 'font-color-contrast'
 
 import Spinner from './ui/spinner'
 
@@ -31,6 +32,7 @@ const Editor = ({
       setIsLoading(false)
     },
   })
+  const fontColor = fontColorContrast(analysis?.color || 'skyblue')
   return (
     <div className="p-4 pt-10 md:p-10 h-full bg-white/60 dark:bg-[#09090b] w-full md:grid md:grid-cols-3 md:gap-x-10 flex flex-col relative gap-5 ">
       {isLoading && (
@@ -53,6 +55,7 @@ const Editor = ({
           className="bg-blue-400 px-6 py-6 text-white dark:bg-opacity-75"
           style={{
             backgroundColor: analysis?.color,
+            color: fontColor,
           }}
         >
           <h2 className="text-2xl">Analysis</h2>

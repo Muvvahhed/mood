@@ -5,6 +5,7 @@ import React from 'react'
 
 const getData = async () => {
   const user = await getUserByClerkId()
+  if (!user) return { analyses: [], avgSentimentScore: 0 }
   const analyses = await prisma.analysis.findMany({
     where: {
       userId: user.id,

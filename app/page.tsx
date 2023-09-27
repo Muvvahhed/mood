@@ -20,8 +20,8 @@ export default async function Home() {
         </ul>
       </nav>
       <div className="h-[92%] items-center flex justify-center">
-        <div className="w-[92%] md:w-full md:max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-6xl">
+        <div className="w-[92%] lg:w-full lg:max-w-5xl mx-auto">
+          <h1 className="text-4xl lg:text-6xl">
             <span className="text-green-500">MOOD;</span> Your Journal Buddy.
           </h1>
           <p className="mt-4 lg:text-2xl text-white/60 ">

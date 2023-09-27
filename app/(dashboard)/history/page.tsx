@@ -21,10 +21,20 @@ const HistoryPage = async () => {
 
   return (
     <div className="w-full h-full relative pt-2 overflow-hidden">
-      <div className="absolute right-5">{`Avg. Sentiment Score: ${avgSentimentScore}`}</div>
-      <div className="w-full h-full p-4">
-        <HistoryChart data={analyses} />
-      </div>
+      {analyses.length === 0 ? (
+        <div className="flex w-full h-full items-center justify-center">
+          <div className="lg:text-5xl text-2xl text-primary-green">
+            No Entries Made
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="absolute right-5">{`Avg. Sentiment Score: ${avgSentimentScore}`}</div>
+          <div className="w-full h-full p-4">
+            <HistoryChart data={analyses} />
+          </div>
+        </>
+      )}
     </div>
   )
 }

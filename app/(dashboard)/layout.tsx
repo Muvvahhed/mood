@@ -14,7 +14,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div
       className={`w-full h-screen flex flex-col text-black bg-white/80 dark:bg-[#09090b] dark:text-white`}
     >
-      <nav className="h-[10%] w-full flex items-center md:pl-10 pr-6 border-b dark:bg-[#09090b] gap-x-2 md:gap-x-5 dark:border-[#27272a] ">
+      <nav className="h-[10%] w-full flex items-center lg:pl-10 pr-6 border-b dark:bg-[#09090b] gap-x-2 lg:gap-x-5 dark:border-[#27272a] ">
         <div className="text-4xl font-bold text-green-500 font-montserrat"></div>
         <Link href={'/'}>
           <Image
@@ -28,13 +28,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="ml-auto flex gap-x-4">
           <ModeToggle />
           <UserButton afterSignOutUrl="/" />
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <SideMenu />
           </div>
         </div>
       </nav>
       <div className="h-[90%] flex">
-        <aside className="w-[15%] h-full hidden md:block border-r dark:border-[#27272a] font-sans px-2 pt-2">
+        <aside className="w-[15%] h-full hidden lg:block border-r dark:border-[#27272a] font-sans px-2 pt-2">
           {/* <div>Mood</div> */}
           <ul className="flex w-full flex-col gap-4 items-stretch">
             {links.map((link) => (
@@ -48,7 +48,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             ))}
           </ul>
         </aside>
-        <div className="flex flex-col w-full md:w-[85%] h-full">{children}</div>
+        <div className="flex flex-col w-full lg:w-[85%] h-full">{children}</div>
       </div>
     </div>
   )

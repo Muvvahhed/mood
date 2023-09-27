@@ -4,6 +4,23 @@ import { prisma } from '@/utils/db'
 import { revalidatePath } from 'next/cache'
 import { NextResponse } from 'next/server'
 
+export const GET = async (request: Request) => {
+  const user = await getUserByClerkId()
+  if (!user) return []
+  const entries = await prisma.journalEntry.findMany({
+    where: {
+      userId: user.id,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+    include: {
+      analysis: true,
+    },
+  })
+  return NextResponse.json({ data: entries })
+}
+
 export const POST = async (request: Request) => {
   const user = await getUserByClerkId()
   if (!user) {

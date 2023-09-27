@@ -1,6 +1,7 @@
 'use client'
 
 import { Analysis } from '@prisma/client'
+import { useEffect } from 'react'
 import { ResponsiveContainer, Line, XAxis, Tooltip, LineChart } from 'recharts'
 
 const CustomToolTip = ({
@@ -32,7 +33,7 @@ const CustomToolTip = ({
         <p className="label text-sm text-black/30 dark:text-white/70">
           {dateLabel}
         </p>
-        <p className="intro text-lg md:text-xl uppercase">{analysis.mood}</p>
+        <p className="intro text-lg lg:text-xl uppercase">{analysis.mood}</p>
       </div>
     )
   }
